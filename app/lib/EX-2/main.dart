@@ -16,10 +16,9 @@ class Card extends StatelessWidget {
         ),
         body: Column(
           children: const [
-            MyCard(),
-            MyCard(),
-            MyCard(),
-            MyCard(),
+            MyCard(isFavorited: true),
+            MyCard(isFavorited: false),
+            MyCard(isFavorited: true),
           ],
         ),
       ),
@@ -28,15 +27,23 @@ class Card extends StatelessWidget {
 }
 
 class MyCard extends StatefulWidget {
-  const MyCard({super.key});
+  final bool isFavorited;
+  const MyCard({Key? key, this.isFavorited = false}) : super(key: key);
 
   @override
   State<MyCard> createState() => _MyCardState();
 }
 
 class _MyCardState extends State<MyCard> {
-  bool _isFavorited = false;
+  late bool _isFavorited;
+
   Color get _heartColor => _isFavorited ? Colors.red : Colors.grey;
+
+  @override
+  void initState() {
+    super.initState();
+    _isFavorited = widget.isFavorited;
+  }
 
   @override
   Widget build(BuildContext context) {
