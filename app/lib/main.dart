@@ -10,7 +10,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text("Custom buttons")),
-        body: Center(child: CustomBottons()),
+        body: Center(
+          child: Column(
+            children: [
+              const CustomBottons(),
+              SizedBox(height: 20),
+              const CustomBottons(),
+              SizedBox(height: 20),
+              const CustomBottons(),
+              SizedBox(height: 20),
+              const CustomBottons(),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -27,7 +39,8 @@ class CustomBottonsState extends State<CustomBottons> {
   bool _selected = false;
   String get _label => _selected ? "Selected" : "Not Selected";
   Color get _textColor => _selected ? Colors.white : Colors.black;
-  Color get _backGroundColor => _selected ? Colors.blue : Colors.grey;
+  Color get _backGroundColor =>
+      _selected ? Colors.blue[500]! : Colors.blue[50]!;
 
   @override
   Widget build(BuildContext context) {
